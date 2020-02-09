@@ -1,6 +1,9 @@
 # Kickstarter
 ## Intro
 
+This project, as I write this, I expect to be a short project. I just want
+to do a brief survey of some kickstarter data that I got off of Kaggle.
+
 Dataset URL: https://www.kaggle.com/kemical/kickstarter-projects
 
 
