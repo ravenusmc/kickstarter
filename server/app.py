@@ -18,20 +18,12 @@ CORS(app)
 @app.route('/firstQuestionData', methods=['GET', 'POST'])
 def DeathData():
     if request.method == 'POST':
-        data = Data()
-        post_data = request.get_json()
-        state = post_data['state']
-        orientation = post_data['orientation']
-        question_one_data = data.question_one_data(state, orientation)
         return jsonify(question_one_data)
 
 #This route will get the data for the map page
 @app.route('/fetchMapData', methods=['GET', 'POST'])
 def map_data():
     if request.method == 'POST':
-        data = Data()
-        post_data = request.get_json()
-        map_data = data.get_map_data(post_data)
         return jsonify(map_data)
 
 if __name__ == '__main__':
