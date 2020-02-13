@@ -2,15 +2,20 @@
   <div>
 
     <div class='section-padding'>
-      <nav>
-        <div class='logo'>KickStarter Study</div>
 
-        <ul class='nav-area'>
-          <li>Home</li>
-          <li>About</li>
-        </ul>
-        
+      <nav>
+
+        <div class='logo'>
+          KickStarter Study
+        </div>
+
+        <div>
+          <router-link to="/">Home</router-link> |
+          <router-link to="/about">About</router-link>
+        </div>
+
       </nav>
+
     </div>
 
   </div>
@@ -39,20 +44,32 @@ body {
 
 .section-padding {
   padding-top: 25px;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  background-image: url('../../assets/images/donation.jpg');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   position: relative;
-  width: calc(80% - 60px);
+  width: calc(100%);
   margin: 10px 0;
   background: blueviolet;
   z-index: 1;
   text-align: right;
   padding-right: 2%;
+  height: 80px;
 }
 
 .logo {
-  width: 15%;
+  width: 35%;
   float: left;
   text-transform: uppercase;
   color: #fff;
