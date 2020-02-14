@@ -10,8 +10,8 @@
         </div>
 
         <div>
-          <router-link to="/">Home</router-link> |
-          <router-link to="/about">About</router-link>
+          <router-link to="/" class='linkFix'>Home</router-link>
+          <router-link to="/about" class='linkFix'>About</router-link>
         </div>
 
       </nav>
@@ -44,11 +44,11 @@ body {
 
 .section-padding {
   padding-top: 25px;
-  height: 700px;
+  height: 650px;
   display: flex;
   justify-content: center;
   background-image: url('../../assets/images/donation.jpg');
-  background-size: 100% 100%;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -61,7 +61,7 @@ nav {
   position: relative;
   width: calc(100%);
   margin: 10px 0;
-  background: blueviolet;
+  background: #138AEF;
   z-index: 1;
   text-align: right;
   padding-right: 2%;
@@ -73,9 +73,17 @@ nav {
   float: left;
   text-transform: uppercase;
   color: #fff;
-  font-size: 25px;
+  font-size: 35px;
   text-align: left;
   padding-left: 2%;
+}
+
+.linkFix {
+  text-decoration: none;
+  color: #fff;
+  font-size: 30px;
+  text-transform: uppercase;
+  margin-right: 15px;
 }
 
 .nav-area li {
