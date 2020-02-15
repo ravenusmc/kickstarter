@@ -59,7 +59,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   position: relative;
-  width: calc(100%);
+  width: calc(95%);
   margin: 10px 0;
   background: #138AEF;
   z-index: 1;
