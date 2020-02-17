@@ -15,16 +15,11 @@ app.config.from_object(__name__)
 CORS(app)
 
 #This route will get the data for the charts
-@app.route('/firstQuestionData', methods=['GET', 'POST'])
-def DeathData():
+@app.route('/routeOne', methods=['GET', 'POST'])
+def routeOne():
     if request.method == 'POST':
         return jsonify(question_one_data)
 
-#This route will get the data for the map page
-@app.route('/fetchMapData', methods=['GET', 'POST'])
-def map_data():
-    if request.method == 'POST':
-        return jsonify(map_data)
 
 if __name__ == '__main__':
     app.run()
