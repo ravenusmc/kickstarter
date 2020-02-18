@@ -18,7 +18,7 @@ CORS(app)
 @app.route('/routeOne', methods=['GET', 'POST'])
 def routeOne():
     if request.method == 'POST':
-        return jsonify(question_one_data)
+        return jsonify('Hi')
 
 
 if __name__ == '__main__':
