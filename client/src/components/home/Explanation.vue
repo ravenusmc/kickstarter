@@ -1,6 +1,11 @@
 <template>
   <div>
-    Explanation
+    <section>
+      <div>
+      </div>
+      <div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -13,4 +18,9 @@ export default {
 </script>
 
 <style scoped>
+section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2em; 
+}
 </style>
