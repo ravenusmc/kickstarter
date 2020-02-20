@@ -61,7 +61,7 @@ nav {
   position: relative;
   width: calc(95%);
   margin: 10px 0;
-  background: #138AEF;
+  background: #05ce78;
   z-index: 1;
   text-align: right;
   padding-right: 2%;
