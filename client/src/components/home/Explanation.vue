@@ -14,8 +14,20 @@
         <h2 class='center fontColor font'>Purpose</h2>
         <p class='font paragraphFont'>
           The purpose of this project is to examine some Kick Starter Data from
-          a basic level. I also have another goal with this project of using a
-          few different charts from Google Charts and see what different
+          a basic level. Basic level meaning looking at some of the basic statistical
+          aspects of the data as well as building some charts to go along with it.
+          along the lines of charts, I also have another goal with this project
+          of using a few different charts from Google Charts. I tend to only use pie
+          and bar charts and want to break out and use a few other types.
+        </p>
+        <p class='font paragraphFont'>
+          As for why I choose this dataset? The easiest reason is that I just did.
+          I wanted anotheer dataset to play with and this caught my eye. I did attend
+          a data science meeetup that worked with a similar dataset. I never helped
+          much on that project but maybe this is a way to make up for that!
+        </p>
+        <p class='font paragraphFont'>
+          Let's examine some data!
         </p>
       </div>
 
@@ -41,7 +53,10 @@ export default {
 }
 
 section {
+  margin-left: 5%;
+  margin-right: 5%;
   margin-top: 50px;
+  margin-bottom: 50px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 2em;

@@ -31,7 +31,7 @@ export default {
 
 .paragraphFont {
   color: #656969;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.5em;
 }
 
