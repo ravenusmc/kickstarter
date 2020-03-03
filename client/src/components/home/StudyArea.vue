@@ -1,17 +1,17 @@
 <template>
   <div>
-    <Form/>
+    <StudyForm />
   </div>
 </template>
 
 <script scoped>
-import Form from '@/components/forms/Form.vue';
+import StudyForm from '@/components/forms/StudyForm.vue';
 
 export default {
   name: 'StudyArea',
   components: {
-    Form
-  }
+    StudyForm,
+  },
 }
 </script>
 
