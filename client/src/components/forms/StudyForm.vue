@@ -47,6 +47,7 @@
 
 <script>
 import moment from 'moment';
+import { mapActions } from 'vuex';
 
 export default {
   name: "StudyForm",
@@ -65,6 +66,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'fireActions',
+    ]),
     submitForm(evt) {
       evt.preventDefault();
       this.startDate = moment(this.startDate).format('M/D/YYYY h:mm:ss A');
@@ -79,8 +83,7 @@ export default {
         moneyGoal: this.moneyGoal,
         backers: this.backers,
       };
-      console.log(payload)
-      // this.fetchMapData({ payload });
+      this.fireActions({ payload });
     }
   }
 }

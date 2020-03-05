@@ -18,6 +18,8 @@ CORS(app)
 @app.route('/routeOne', methods=['GET', 'POST'])
 def routeOne():
     if request.method == 'POST':
+        post_data = request.get_json()
+        print(post_data)
         return jsonify('Hi')
 
 
