@@ -18,8 +18,17 @@ CORS(app)
 @app.route('/routeOne', methods=['GET', 'POST'])
 def routeOne():
     if request.method == 'POST':
+        data = Data()
         post_data = request.get_json()
-        print(post_data)
+        category = post_data['category']
+        state = post_data['state']
+        currency = post_data['currency']
+        country = post_data['country']
+        start_date = post_data['startDate']
+        end_date = post_data['endDate']
+        money_goal = post_data['moneyGoal']
+        backers = post_data['backers']
+        data.first_chart(category, state, currency, country, start_date, end_date, money_goal, backers)
         return jsonify('Hi')
 
 
