@@ -17,8 +17,12 @@ class Data():
     def first_chart(self, category, state, currency, country, start_date, end_date, money_goal, backers):
         first_time_stamp = pd.to_datetime(start_date)
         last_time_stamp = pd.to_datetime(end_date)
+        # Sorting the data by the time frame that the user entered.
         data = self.data.loc[(self.data['deadline'] >= first_time_stamp) & (self.data['deadline'] <= last_time_stamp), :]
         print(len(data))
+        # Sorting the data by the other parameters that the user entered.
+        data_set = data[(data.category == category) & (data.currency == currency) & (data.country == country) & (data.backers <= backers) & (data.goal <= money_goal)]
+        print(len(data_set))
 
 
 data = Data()
