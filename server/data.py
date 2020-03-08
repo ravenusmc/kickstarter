@@ -12,7 +12,9 @@ class Data():
         self.data['deadline'] = pd.to_datetime(self.data['deadline'], infer_datetime_format=True)
 
     def unique_values(self):
-        print(self.data['main_category'].unique())
+        #checking the datatypes of a column
+        print(self.data.dtypes)
+        #print(self.data['main_category'].unique())
 
     def first_chart(self, category, state, currency, country, start_date, end_date, money_goal, backers):
         first_time_stamp = pd.to_datetime(start_date)
