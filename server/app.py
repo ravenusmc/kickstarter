@@ -26,8 +26,8 @@ def routeOne():
         country = post_data['country']
         start_date = post_data['startDate']
         end_date = post_data['endDate']
-        money_goal = post_data['moneyGoal']
-        backers = post_data['backers']
+        money_goal = float(post_data['moneyGoal'])
+        backers = float(post_data['backers'])
         data.first_chart(category, state, currency, country, start_date, end_date, money_goal, backers)
         return jsonify('Hi')
 
