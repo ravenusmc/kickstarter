@@ -17,15 +17,27 @@ class Data():
         #print(self.data['main_category'].unique())
 
     def first_chart(self, category, state, currency, country, start_date, end_date, money_goal, backers):
+        # This list will hold the data that will be returned from this method.
+        first_chart_data = []
+        columns = ['State', 'Count']
+        first_chart_data.append(columns)
         first_time_stamp = pd.to_datetime(start_date)
         last_time_stamp = pd.to_datetime(end_date)
         # Sorting the data by the time frame that the user entered.
         data = self.data.loc[(self.data['deadline'] >= first_time_stamp) & (self.data['deadline'] <= last_time_stamp), :]
-        print(len(data))
         # Sorting the data by the other parameters that the user entered.
         data_set = data[(data.category == category) & (data.currency == currency) & (data.country == country) & (data.backers <= backers) & (data.goal <= money_goal)]
-        print(len(data_set))
+        states = ['failed', 'successful', 'canceled']
+        for state in states:
+            #resetting the data set for each loop
+            new_data_set = data_set
+            rows = []
+            dataset_length = len(new_data_set[(new_data_set.state == state)])
+            rows.append(state)
+            rows.append(dataset_length)
+            first_chart_data.append(rows)
+        return first_chart_data
 
 
-data = Data()
-data.unique_values()
+# data = Data()
+# data.unique_values()

@@ -28,8 +28,8 @@ def routeOne():
         end_date = post_data['endDate']
         money_goal = float(post_data['moneyGoal'])
         backers = float(post_data['backers'])
-        data.first_chart(category, state, currency, country, start_date, end_date, money_goal, backers)
-        return jsonify('Hi')
+        first_chart_data = data.first_chart(category, state, currency, country, start_date, end_date, money_goal, backers)
+        return jsonify(first_chart_data)
 
 
 if __name__ == '__main__':

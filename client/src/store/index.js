@@ -25,8 +25,7 @@ export default new Vuex.Store({
       const path = 'http://localhost:5000/routeOne';
       axios.post(path, payload)
       .then((res) => {
-        console.log(res.data)
-        // commit('setGettingSimpleFormResponse', false);
+        commit('setFirstChartData', res.data);
       });
     },
 
