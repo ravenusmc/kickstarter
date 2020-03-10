@@ -6,6 +6,7 @@
 
 <script scoped>
 import StudyForm from '@/components/forms/StudyForm.vue';
+import GraphCard from '@/components/charts/GraphCard.vue';
 
 export default {
   name: 'StudyArea',
