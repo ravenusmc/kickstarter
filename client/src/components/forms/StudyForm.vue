@@ -4,6 +4,7 @@
     <form @submit="submitForm">
 
       <div>
+        <label>Category:</label>&nbsp;
         <select v-model="category" name="category">
           <option v-for="category in categories" v-bind:key="category" :value="category">
             {{ category }}
@@ -12,6 +13,7 @@
       </div>
 
       <div>
+        <label>State:</label>&nbsp;
         <select v-model="state" name="state">
           <option v-for="state in states" v-bind:key="state" :value="state">
             {{ state }}
@@ -20,18 +22,20 @@
       </div>
 
       <div class='datePicker'>
-        <h3>Enter the Date:</h3>
-        <label>Start Date:</label>
-        <input v-model="startDate">
-        <label>End Date:</label>
+        <h3>Enter Date:</h3>
+        <label>Start Date:</label>&nbsp;
+        <input v-model="startDate">&nbsp;&nbsp;
+        <label>End Date:</label>&nbsp;
         <input  v-model="endDate">
       </div>
 
       <div>
+        <label>Money Goal:</label>&nbsp;
         <input v-model="moneyGoal">
       </div>
 
       <div>
+        <label>Number of Backers:</label>&nbsp;
         <input v-model="backers">
       </div>
 
