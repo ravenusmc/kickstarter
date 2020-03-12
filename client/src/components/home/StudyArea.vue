@@ -71,6 +71,7 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 2em;
+  margin-bottom: 50px;
 }
 
 .title {
@@ -78,8 +79,8 @@ export default {
 }
 
 .paragraphDiv {
-  margin-left: 5%;
-  margin-right: 5%;
+  margin-left: 8%;
+  margin-right: 8%;
 }
 
 .paragraphFormatting {
