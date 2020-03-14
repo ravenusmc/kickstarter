@@ -7,7 +7,12 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 
   state: {
-    firstChartData: [],
+    firstChartData: [
+      ["State", "Count"],
+      ["failed", 312],
+      ["successful", 245],
+      ["canceled", 62],
+    ],
   },
 
   getters: {
@@ -26,6 +31,7 @@ export default new Vuex.Store({
       axios.post(path, payload)
       .then((res) => {
         res.data.sort((a, b) => b - a);
+        console.log(res.data)
         commit('setFirstChartData', res.data);
       });
     },

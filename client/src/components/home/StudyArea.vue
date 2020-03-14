@@ -1,7 +1,7 @@
 <template>
   <div>
     <StudyForm />
-    
+
     <!-- First Chart Area -->
     <div class='graphExplanationArea'>
 
@@ -25,9 +25,14 @@
            want to say that some of the filters from above will not be used to build
            this first chart.
          </p>
+         <p class='paragraphFormatting'>
+           This first chart has the money goal set to 1000 and the number of
+           backers set to 100. 
+         </p>
        </div>
 
     </div>
+    <!-- End of First Chart Area -->
 
     <!-- Second Chart Area -->
     <div class='graphExplanationArea'>
@@ -55,6 +60,7 @@
        </div>
 
     </div>
+    <!-- End of Second Chart Area -->
 
   </div>
 </template>
