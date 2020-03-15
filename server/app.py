@@ -31,6 +31,15 @@ def routeOne():
         first_chart_data = data.first_chart(category, state, currency, country, start_date, end_date, money_goal, backers)
         return jsonify(first_chart_data)
 
+#This route will get the data for the successful by category chart
+@app.route('/SuccessfulByCategory', methods=['GET', 'POST'])
+def Successful_By_Category_Route():
+    if request.method == 'POST':
+        data = Data()
+        post_data = request.get_json()
+        successful_by_category_data = data.successful_by_category(post_data)
+        return jsonify('HI')
+
 
 if __name__ == '__main__':
     app.run()

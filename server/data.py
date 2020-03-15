@@ -38,6 +38,11 @@ class Data():
             first_chart_data.append(rows)
         return first_chart_data
 
+    def successful_by_category(self, post_data):
+        print(post_data)
+        return('Hi')
+
+
 
 # data = Data()
 # data.unique_values()

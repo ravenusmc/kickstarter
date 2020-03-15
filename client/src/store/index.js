@@ -13,10 +13,12 @@ export default new Vuex.Store({
       ["successful", 245],
       ["canceled", 62],
     ],
+    successfulByCategory: [],
   },
 
   getters: {
     firstChartData: state => state.firstChartData,
+    successfulByCategory: state => state.successfulByCategory,
   },
 
   actions: {
@@ -24,6 +26,7 @@ export default new Vuex.Store({
     fireActions: ({ dispatch }, { payload }) => {
       console.log(payload)
       dispatch('fetchFirstChartData', { payload });
+      dispatch('fetchSuccessfulByCategory', { payload });
     },
 
     fetchFirstChartData: ({ commit }, { payload}) => {
@@ -31,8 +34,17 @@ export default new Vuex.Store({
       axios.post(path, payload)
       .then((res) => {
         res.data.sort((a, b) => b - a);
-        console.log(res.data)
         commit('setFirstChartData', res.data);
+      });
+    },
+
+    fetchSuccessfulByCategory: ({ commit }, { payload}) => {
+      const path = 'http://localhost:5000/SuccessfulByCategory';
+      axios.post(path, payload)
+      .then((res) => {
+        console.log(res.data)
+        res.data.sort((a, b) => b - a);
+        commit('setSuccessfulByCategory', res.data);
       });
     },
 
@@ -43,6 +55,11 @@ export default new Vuex.Store({
     setFirstChartData(state, data) {
       state.firstChartData = data;
     },
+
+    setSuccessfulByCategory(state, data) {
+      state.successfulByCategory = data;
+    }
+
 
   },
 

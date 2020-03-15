@@ -27,7 +27,7 @@
          </p>
          <p class='paragraphFormatting'>
            This first chart has the money goal set to 1000 and the number of
-           backers set to 100. 
+           backers set to 100.
          </p>
        </div>
 
@@ -94,6 +94,7 @@ export default {
   computed: {
   ...mapGetters([
     'firstChartData',
+    'successfulByCategory',
   ]),
 },
 }
