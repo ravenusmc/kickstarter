@@ -42,7 +42,6 @@ export default new Vuex.Store({
       const path = 'http://localhost:5000/SuccessfulByCategory';
       axios.post(path, payload)
       .then((res) => {
-        console.log(res.data)
         res.data.sort((a, b) => b - a);
         commit('setSuccessfulByCategory', res.data);
       });

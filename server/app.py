@@ -38,7 +38,7 @@ def Successful_By_Category_Route():
         data = Data()
         post_data = request.get_json()
         successful_by_category_data = data.successful_by_category(post_data)
-        return jsonify('HI')
+        return jsonify(successful_by_category_data)
 
 
 if __name__ == '__main__':
