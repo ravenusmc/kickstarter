@@ -39,7 +39,6 @@ class Data():
         return first_chart_data
 
     def successful_by_category(self, post_data):
-        #{'category': 'Publishing', 'state': 'successful', 'currency': 'USD', 'country': 'US', 'startDate': '5/3/2009 12:00:00 AM', 'endDate': '2/17/2017 12:00:00 AM', 'moneyGoal': 0, 'backers': 0}
         successful_by_category_data = []
         categories = ['Publishing', 'Film & Video', 'Music', 'Food', 'Design', 'Crafts', 'Games',
         'Comics', 'Fashion', 'Theater', 'Art', 'Photography', 'Technology', 'Dance', 'Journalism']
@@ -59,6 +58,30 @@ class Data():
             rows.append(dataset_length)
             successful_by_category_data.append(rows)
         return(successful_by_category_data)
+
+    # I will say this - I should have combined this method with the one above it which
+    # would have been really easy - just including failures above! This is what
+    # happens when I start to code but do not think through the code!!
+    def failures_by_category(self, post_data):
+        failures_by_category_data = []
+        categories = ['Publishing', 'Film & Video', 'Music', 'Food', 'Design', 'Crafts', 'Games',
+        'Comics', 'Fashion', 'Theater', 'Art', 'Photography', 'Technology', 'Dance', 'Journalism']
+        columns = ['Category', 'Count']
+        failures_by_category_data.append(columns)
+        # Getting dates and sorting data by them.
+        first_time_stamp = pd.to_datetime(post_data['startDate'])
+        last_time_stamp = pd.to_datetime(post_data['endDate'])
+        # Sorting the data by the time frame that the user entered.
+        data = self.data.loc[(self.data['deadline'] >= first_time_stamp) & (self.data['deadline'] <= last_time_stamp), :]
+        for category in categories:
+            #resetting the data set for each loop
+            new_data_set = data
+            rows = []
+            dataset_length = len(new_data_set[(new_data_set.category == category) & (new_data_set.state == 'failed')])
+            rows.append(category)
+            rows.append(dataset_length)
+            failures_by_category_data.append(rows)
+        return(failures_by_category_data)
 
 
 
