@@ -1,6 +1,5 @@
 <template>
-  <div>
-
+  <div class='page'>
     <!-- Header area -->
     <div class='about_header'>
       <h1 class='title font center'>About Me</h1>
@@ -61,6 +60,7 @@
 </template>
 
 <script>
+
 export default {
   components: {
   },

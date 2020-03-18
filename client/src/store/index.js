@@ -31,7 +31,24 @@ export default new Vuex.Store({
       ["Games", 643],
       ["Journalism", 446],
     ],
-    failuresByCategory: [],
+    failuresByCategory: [
+      ["Category", "Count"],
+      ["Food", 6555],
+      ["Music", 5502],
+      ["Film & Video", 5127],
+      ["Fashion", 4996],
+      ["Technology", 3832],
+      ["Art", 3544],
+      ["Photography", 3260],
+      ["Publishing", 2941],
+      ["Crafts", 2594],
+      ["Theater", 2215],
+      ["Comics", 1988],
+      ["Design", 1861],
+      ["Games", 1606],
+      ["Journalism", 1000],
+      ["Dance", 640]
+    ],
   },
 
   getters: {
@@ -71,6 +88,7 @@ export default new Vuex.Store({
       axios.post(path, payload)
       .then((res) => {
         res.data.sort((a, b) => b[1] - a[1]);
+        console.log(res.data)
         commit('setFailuresByCategory', res.data);
       });
     },

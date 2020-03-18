@@ -8,7 +8,7 @@
 
 <script>
 import Header from '@/components/generic/Header.vue';
-import Footer from '@/components/generic/Footer.vue'
+import Footer from '@/components/generic/Footer.vue';
 
 export default {
   components: {
@@ -19,6 +19,14 @@ export default {
 </script>
 
 <style>
+/* This code is here for possible use of route transitions */
+/* @import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1"; */
+
+/* .page {
+  position: fixed;
+  width: inherit;
+} */
+/* End route transition code */
 
 .center {
   text-align: center;
