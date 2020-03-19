@@ -49,6 +49,15 @@ def Failures_By_Category_Route():
         failures_by_category_data = data.failures_by_category(post_data)
         return jsonify(failures_by_category_data)
 
+#This route will get the data for the failures and successs chart
+@app.route('/SuccessAndFailures', methods=['GET', 'POST'])
+def Success_And_Failures_chart():
+    if request.method == 'POST':
+        data = Data()
+        post_data = request.get_json()
+        failures_by_category_data = data.Success_And_Failures_chart(post_data)
+        return jsonify(failures_by_category_data)
+
 
 if __name__ == '__main__':
     app.run()

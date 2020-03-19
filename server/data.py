@@ -83,6 +83,8 @@ class Data():
             failures_by_category_data.append(rows)
         return(failures_by_category_data)
 
+    def Success_And_Failures_chart(self, post_data):
+
 
 
 # data = Data()

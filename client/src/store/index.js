@@ -49,13 +49,15 @@ export default new Vuex.Store({
       ["Journalism", 1000],
       ["Dance", 640]
     ],
-  },
+    successAndFailures: [],
+  }, // End state
 
   getters: {
     firstChartData: state => state.firstChartData,
     successfulByCategory: state => state.successfulByCategory,
     failuresByCategory: state => state.failuresByCategory,
-  },
+    successAndFailures: state => state.successAndFailures,
+  }, // End Getters
 
   actions: {
 
@@ -63,6 +65,7 @@ export default new Vuex.Store({
       dispatch('fetchFirstChartData', { payload });
       dispatch('fetchSuccessfulByCategory', { payload });
       dispatch('fetchFailuresByCategory', { payload });
+      dispatch('fetchSuccessAndFailures', { payload });
     },
 
     fetchFirstChartData: ({ commit }, { payload}) => {
@@ -88,12 +91,20 @@ export default new Vuex.Store({
       axios.post(path, payload)
       .then((res) => {
         res.data.sort((a, b) => b[1] - a[1]);
-        console.log(res.data)
         commit('setFailuresByCategory', res.data);
       });
     },
 
-  },
+    fetchSuccessAndFailures: ({ commit }, { payload}) => {
+      const path = 'http://localhost:5000/SuccessAndFailures';
+      axios.post(path, payload)
+      .then((res) => {
+        res.data.sort((a, b) => b[1] - a[1]);
+        commit('setSuccessAndFailures', res.data);
+      });
+    },
+
+  }, // End Actions
 
   mutations: {
 
@@ -107,9 +118,13 @@ export default new Vuex.Store({
 
     setFailuresByCategory(state, data) {
       state.failuresByCategory = data;
-    }
+    },
+
+    setSuccessAndFailures(state, data) {
+      state.successAndFailures = data;
+    },
 
 
-  },
+  }, // End mutations
 
 })
