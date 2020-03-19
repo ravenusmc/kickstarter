@@ -84,6 +84,53 @@ class Data():
         return(failures_by_category_data)
 
     def Success_And_Failures_chart(self, post_data):
+        success_and_failures_data = []
+        columns = ['State', 'Count']
+        success_and_failures_data.append(columns)
+        # Getting dates and sorting data by them.
+        first_time_stamp = pd.to_datetime(post_data['startDate'])
+        last_time_stamp = pd.to_datetime(post_data['endDate'])
+        # Sorting the data by the time frame that the user entered.
+        data = self.data.loc[(self.data['deadline'] >= first_time_stamp) & (self.data['deadline'] <= last_time_stamp), :]
+        states = ['failed', 'successful', 'canceled']
+        for state in states:
+            #resetting the data set for each loop
+            new_data_set = data
+            rows = []
+            dataset_length = len(new_data_set[(new_data_set.state == state)])
+            rows.append(state)
+            rows.append(dataset_length)
+            success_and_failures_data.append(rows)
+        return success_and_failures_data
+
+    # def Success_And_Failures_chart(self, post_data):
+    #     success_and_failures_data = []
+    #     columns = ['Category', 'State', 'Count']
+    #     success_and_failures_data.append(columns)
+    #     # Getting dates and sorting data by them.
+    #     first_time_stamp = pd.to_datetime(post_data['startDate'])
+    #     last_time_stamp = pd.to_datetime(post_data['endDate'])
+    #     # Sorting the data by the time frame that the user entered.
+    #     data = self.data.loc[(self.data['deadline'] >= first_time_stamp) & (self.data['deadline'] <= last_time_stamp), :]
+    #     categories = ['Publishing', 'Film & Video', 'Music', 'Food', 'Design', 'Crafts', 'Games',
+    #     'Comics', 'Fashion', 'Theater', 'Art', 'Photography', 'Technology', 'Dance', 'Journalism']
+    #     states = ['failed', 'successful', 'canceled']
+    #     for category in categories:
+    #         #resetting the data set for each loop
+    #         new_data_set = data
+    #         category_data_set = new_data_set[(new_data_set.category == category)]
+    #         for state in states:
+    #             rows = []
+    #             rows.append(category)
+    #             #resetting the data set for each loop
+    #             state_data_set = category_data_set
+    #             dataset_length = len(state_data_set[(state_data_set.state == state)])
+    #             rows.append(state)
+    #             rows.append(dataset_length)
+    #             success_and_failures_data.append(rows)
+    #     return success_and_failures_data
+
+
 
 
 

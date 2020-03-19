@@ -55,8 +55,8 @@ def Success_And_Failures_chart():
     if request.method == 'POST':
         data = Data()
         post_data = request.get_json()
-        failures_by_category_data = data.Success_And_Failures_chart(post_data)
-        return jsonify(failures_by_category_data)
+        success_and_failures_data = data.Success_And_Failures_chart(post_data)
+        return jsonify(success_and_failures_data)
 
 
 if __name__ == '__main__':

@@ -49,7 +49,12 @@ export default new Vuex.Store({
       ["Journalism", 1000],
       ["Dance", 640]
     ],
-    successAndFailures: [],
+    successAndFailures: [
+      ["State", "Count"],
+      ["failed", 173757],
+      ["successful", 116325],
+      ["canceled", 33221]
+    ],
   }, // End state
 
   getters: {
