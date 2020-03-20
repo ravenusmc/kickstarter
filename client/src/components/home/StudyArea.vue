@@ -46,17 +46,32 @@
      <div class='paragraphDiv'>
        <h2 class='center title'>Brief Explanation</h2>
        <p class='paragraphFormatting'>
-         The purpose of the first chart is to show the user the number of charts
-         that have failed, succeeded or been cancelled in a given time frame. The
-         user can also select a money goal that they want to go up to as well as
-         the number of backers who want to support a project.
+         This chart will show the user what categories had the most successes in
+         a given time frame. The initial time frame that the site uses is from <span>May
+         3rd, 2009 to February 17th, 2017</span>. As we can see, the top three kick starter
+         campaigns in that time period were Music, Theater and Food.
        </p>
        <p class='paragraphFormatting'>
-         The reason why I created this chart is that I wanted the users to get
-         just a basic information from the kickstarter data that I have. I also
-         want to say that some of the filters from above will not be used to build
-         this first chart.
+         The buttons below will allow the user to change the time frame year by year.
+         When the first button is hit, the time frame will move forward by one year. Thus,
+         the first year represented, after the year is increased is 2010.
        </p>
+       <form>
+         <h3 class='center font'>Year: {{ chartTwoYear }}</h3>
+
+         <div class='button_div'>
+
+           <button>
+             <i class="fa fa-arrow-left fa-3x" aria-hidden="true"></i>
+           </button>
+
+           <button>
+             <i class="fa fa-arrow-right fa-3x" aria-hidden="true"></i>
+           </button>
+           
+         </div>
+
+       </form>
      </div>
 
     </div>
@@ -121,7 +136,7 @@
   </div>
 </template>
 
-<script scoped>
+<script>
 import { mapGetters } from 'vuex';
 import StudyForm from '@/components/forms/StudyForm.vue';
 import GraphCard from '@/components/charts/GraphCard.vue';
@@ -138,6 +153,7 @@ export default {
       typeTwo: 'ColumnChart',
       typeThree: 'PieChart',
       typeFour: 'TreeMap',
+      chartTwoYear: 'Initial Time Frame',
       chartOptionsOne: {
         title: 'First Chart',
         legend: { position: 'top' },
@@ -206,6 +222,17 @@ export default {
 
 .paragraphFormatting {
   font-size: 18px;
+}
+
+span {
+  font-weight: bold;
+}
+
+.button_div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 </style>
