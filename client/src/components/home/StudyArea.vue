@@ -47,31 +47,35 @@
        <h2 class='center title'>Brief Explanation</h2>
        <p class='paragraphFormatting'>
          This chart will show the user what categories had the most successes in
-         a given time frame. The initial time frame that the site uses is from <span>May
-         3rd, 2009 to February 17th, 2017</span>. As we can see, the top three kick starter
-         campaigns in that time period were Music, Theater and Food.
+         a given time frame. The <span>initial time frame</span> that the site uses
+         is from <span>May 3rd, 2009 to February 17th, 2017</span>. As we can see,
+         the top three kick starter campaigns in that time period were Music,
+         Theater and Food.
        </p>
        <p class='paragraphFormatting'>
          The buttons below will allow the user to change the time frame year by year.
          When the first button is hit, the time frame will move forward by one year. Thus,
          the first year represented, after the year is increased is 2010.
        </p>
-       <form>
-         <h3 class='center font'>Year: {{ chartTwoYear }}</h3>
+
+       <h3 class='center font'>Year: {{ chartTwoYear }}</h3>
 
          <div class='button_div'>
 
-           <button>
-             <i class="fa fa-arrow-left fa-3x" aria-hidden="true"></i>
-           </button>
+           <form @submit="decreaseYear">
+             <button class='arrowButton'>
+               <i class="fa fa-arrow-left fa-3x" aria-hidden="true"></i>
+             </button>
+           </form>
 
-           <button>
-             <i class="fa fa-arrow-right fa-3x" aria-hidden="true"></i>
-           </button>
-           
+           <form @submit="increaseYear">
+             <button class='arrowButton'>
+               <i class="fa fa-arrow-right fa-3x" aria-hidden="true"></i>
+             </button>
+           </form>
+
          </div>
 
-       </form>
      </div>
 
     </div>
@@ -137,7 +141,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import moment from 'moment';
+import { mapGetters, mapActions } from 'vuex';
 import StudyForm from '@/components/forms/StudyForm.vue';
 import GraphCard from '@/components/charts/GraphCard.vue';
 
@@ -157,6 +162,7 @@ export default {
       chartOptionsOne: {
         title: 'First Chart',
         legend: { position: 'top' },
+        colors:['#05ce78'],
         height: 500,
         vAxis: {
           viewWindow: {
@@ -167,7 +173,12 @@ export default {
       chartOptionsTwo: {
         title: 'Successful By Category Chart',
         legend: { position: 'top' },
+        colors:['#05ce78'],
         height: 500,
+        animation:{
+          duration: 1000,
+          easing: 'linear',
+        },
         vAxis: {
           viewWindow: {
             min: 0,
@@ -177,6 +188,7 @@ export default {
       chartOptionsThree: {
         title: 'Failures By Category Chart',
         legend: { position: 'top' },
+        colors:['#05ce78'],
         height: 500,
         vAxis: {
           viewWindow: {
@@ -192,13 +204,64 @@ export default {
     }
   },
   computed: {
-  ...mapGetters([
-    'firstChartData',
-    'successfulByCategory',
-    'failuresByCategory',
-    'successAndFailures',
-  ]),
-},
+    ...mapGetters([
+      'firstChartData',
+      'successfulByCategory',
+      'failuresByCategory',
+      'successAndFailures',
+    ]),
+  }, // End Computed properties
+  methods: {
+    ...mapActions([
+      'fireActionsIndividualChart',
+    ]),
+    decreaseYear(evt) {
+      evt.preventDefault();
+      if (this.chartTwoYear == 'Initial Time Frame') {
+        this.chartTwoYear = 2010
+      }else {
+        this.chartTwoYear -= 1
+      }
+
+      if (this.chartTwoYear < 2009){
+        alert('There is no data below 2009')
+        this.chartTwoYear = 2009
+      }
+
+      let startDate = moment(`01/01/${this.chartTwoYear}`).format('M/D/YYYY h:mm:ss A');
+      let endDate = moment(`12/31/${this.chartTwoYear}`).format('M/D/YYYY h:mm:ss A');
+
+      const payload = {
+        startDate: startDate,
+        endDate: endDate,
+      };
+      this.fireActionsIndividualChart({ payload });
+
+    }, // End decreaseYear method
+    increaseYear(evt) {
+      evt.preventDefault();
+      if (this.chartTwoYear == 'Initial Time Frame') {
+        this.chartTwoYear = 2010
+      }else {
+        this.chartTwoYear += 1
+      }
+
+      if (this.chartTwoYear > 2017){
+        alert('There is no data past 2017')
+        this.chartTwoYear = 2017
+      }
+
+      let startDate = moment(`01/01/${this.chartTwoYear}`).format('M/D/YYYY h:mm:ss A');
+      let endDate = moment(`12/31/${this.chartTwoYear}`).format('M/D/YYYY h:mm:ss A');
+
+      const payload = {
+        startDate: startDate,
+        endDate: endDate,
+      };
+      this.fireActionsIndividualChart({ payload });
+
+    } // End increaseYear method
+  } // End methods
 }
 </script>
 
@@ -233,6 +296,11 @@ span {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.arrowButton {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 </style>

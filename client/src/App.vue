@@ -47,4 +47,16 @@ export default {
   line-height: 1.5em;
 }
 
+button {
+  background-color: #05ce78;
+  border-color: #05ce78;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+button:hover {
+  background-color: #ce055b;
+  border-color: #ce055b;
+}
+
 </style>

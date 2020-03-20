@@ -66,11 +66,19 @@ export default new Vuex.Store({
 
   actions: {
 
+    // This action is fired when the main form is submitted
     fireActions: ({ dispatch }, { payload }) => {
       dispatch('fetchFirstChartData', { payload });
       dispatch('fetchSuccessfulByCategory', { payload });
       dispatch('fetchFailuresByCategory', { payload });
       dispatch('fetchSuccessAndFailures', { payload });
+    },
+
+    // This action is fired when the buttons are pushed to change the year on
+    // an individual chart.
+    fireActionsIndividualChart: ({ dispatch }, { payload }) => {
+      console.log(payload)
+      dispatch('fetchSuccessfulByCategory', { payload });
     },
 
     fetchFirstChartData: ({ commit }, { payload}) => {
