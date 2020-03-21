@@ -93,17 +93,36 @@
      <div class='paragraphDiv'>
        <h2 class='center title'>Brief Explanation</h2>
        <p class='paragraphFormatting'>
-         The purpose of the first chart is to show the user the number of charts
-         that have failed, succeeded or been cancelled in a given time frame. The
-         user can also select a money goal that they want to go up to as well as
-         the number of backers who want to support a project.
+         This chart will show the user what categories had the most failures in
+         a given time frame. The <span>initial time frame</span> that the site uses
+         is from <span>May 3rd, 2009 to February 17th, 2017</span>. As we can see,
+         the top three kick starter campaigns in that time period were Music,
+         Food and Film and Video.
        </p>
        <p class='paragraphFormatting'>
-         The reason why I created this chart is that I wanted the users to get
-         just a basic information from the kickstarter data that I have. I also
-         want to say that some of the filters from above will not be used to build
-         this first chart.
+         The buttons below will allow the user to change the time frame year by year.
+         When the first button is hit, the time frame will move forward by one year. Thus,
+         the first year represented, after the year is increased is 2010.
        </p>
+
+       <h3 class='center font'>Year: {{ chartThreeYear }}</h3>
+
+         <div class='button_div'>
+
+           <form v-on:click="decreaseYear($event, chartThreeYear, 3)">
+             <button class='arrowButton'>
+               <i class="fa fa-arrow-left fa-3x" aria-hidden="true" v-model="chartThreeYear"></i>
+             </button>
+           </form>
+
+           <form @submit="increaseYear">
+             <button class='arrowButton'>
+               <i class="fa fa-arrow-right fa-3x" aria-hidden="true"></i>
+             </button>
+           </form>
+
+         </div>
+
      </div>
 
     </div>
@@ -154,11 +173,13 @@ export default {
   },
   data() {
     return {
+      test: 'HI MIKE',
       typeOne: 'BarChart',
       typeTwo: 'ColumnChart',
       typeThree: 'PieChart',
       typeFour: 'TreeMap',
       chartTwoYear: 'Initial Time Frame',
+      chartThreeYear: 'Initial Time Frame',
       chartOptionsOne: {
         title: 'First Chart',
         legend: { position: 'top' },
@@ -190,6 +211,10 @@ export default {
         legend: { position: 'top' },
         colors:['#05ce78'],
         height: 500,
+        animation:{
+          duration: 1000,
+          easing: 'linear',
+        },
         vAxis: {
           viewWindow: {
             min: 0,
@@ -214,28 +239,44 @@ export default {
   methods: {
     ...mapActions([
       'fireActionsIndividualChart',
+      'fetchSuccessfulByCategory',
+      'fetchFailuresByCategory'
     ]),
-    decreaseYear(evt) {
-      evt.preventDefault();
-      if (this.chartTwoYear == 'Initial Time Frame') {
-        this.chartTwoYear = 2010
+    // decreaseYear: function(event, year) {
+    //   event.preventDefault();
+    //   console.log(year)
+    // },
+    decreaseYear(event, year, graphNumber) {
+      event.preventDefault();
+      
+      if (year == 'Initial Time Frame') {
+        year = 2010
       }else {
-        this.chartTwoYear -= 1
+        year -= 1
       }
 
-      if (this.chartTwoYear < 2009){
+      if (year < 2009){
         alert('There is no data below 2009')
-        this.chartTwoYear = 2009
+        year = 2009
       }
 
-      let startDate = moment(`01/01/${this.chartTwoYear}`).format('M/D/YYYY h:mm:ss A');
-      let endDate = moment(`12/31/${this.chartTwoYear}`).format('M/D/YYYY h:mm:ss A');
+      let startDate = moment(`01/01/${year}`).format('M/D/YYYY h:mm:ss A');
+      let endDate = moment(`12/31/${year}`).format('M/D/YYYY h:mm:ss A');
 
       const payload = {
         startDate: startDate,
         endDate: endDate,
       };
-      this.fireActionsIndividualChart({ payload });
+
+      if (graphNumber == 1) {
+        this.chartOneYear = year
+      } else if (graphNumber == 2) {
+        this.chartTwoYear = year
+      } else if (graphNumber == 3) {
+        this.chartThreeYear = year
+        this.fetchFailuresByCategory({ payload });
+      }
+
 
     }, // End decreaseYear method
     increaseYear(evt) {
