@@ -62,15 +62,15 @@
 
          <div class='button_div'>
 
-           <form @submit="decreaseYear">
+           <form v-on:click="decreaseYear($event, chartTwoYear, 2)">
              <button class='arrowButton'>
-               <i class="fa fa-arrow-left fa-3x" aria-hidden="true"></i>
+               <i class="fa fa-arrow-left fa-3x" aria-hidden="true" v-model="chartTwoYear"></i>
              </button>
            </form>
 
-           <form @submit="increaseYear">
+           <form v-on:click="increaseYear($event, chartTwoYear, 2)">
              <button class='arrowButton'>
-               <i class="fa fa-arrow-right fa-3x" aria-hidden="true"></i>
+               <i class="fa fa-arrow-right fa-3x" aria-hidden="true" v-model="chartTwoYear"></i>
              </button>
            </form>
 
@@ -115,9 +115,9 @@
              </button>
            </form>
 
-           <form @submit="increaseYear">
+           <form v-on:click="increaseYear($event, chartThreeYear, 3)">
              <button class='arrowButton'>
-               <i class="fa fa-arrow-right fa-3x" aria-hidden="true"></i>
+               <i class="fa fa-arrow-right fa-3x" aria-hidden="true" v-model="chartThreeYear"></i>
              </button>
            </form>
 
@@ -151,6 +151,25 @@
          want to say that some of the filters from above will not be used to build
          this first chart.
        </p>
+
+       <h3 class='center font'>Year: {{ chartFourYear }}</h3>
+
+         <div class='button_div'>
+
+           <form v-on:click="decreaseYear($event, chartFourYear, 3)">
+             <button class='arrowButton'>
+               <i class="fa fa-arrow-left fa-3x" aria-hidden="true" v-model="chartFourYear"></i>
+             </button>
+           </form>
+
+           <form v-on:click="increaseYear($event, chartFourYear, 4)">
+             <button class='arrowButton'>
+               <i class="fa fa-arrow-right fa-3x" aria-hidden="true" v-model="chartFourYear"></i>
+             </button>
+           </form>
+
+         </div>
+
      </div>
 
     </div>
@@ -180,6 +199,7 @@ export default {
       typeFour: 'TreeMap',
       chartTwoYear: 'Initial Time Frame',
       chartThreeYear: 'Initial Time Frame',
+      chartFourYear: 'Initial Time Frame',
       chartOptionsOne: {
         title: 'First Chart',
         legend: { position: 'top' },
@@ -225,6 +245,10 @@ export default {
         title: 'Success and Failures Chart',
         legend: { position: 'top' },
         height: 500,
+        animation:{
+          duration: 1000,
+          easing: 'linear',
+        },
       }, // End chartOptionsFour
     }
   },
@@ -240,15 +264,12 @@ export default {
     ...mapActions([
       'fireActionsIndividualChart',
       'fetchSuccessfulByCategory',
-      'fetchFailuresByCategory'
+      'fetchFailuresByCategory',
+      'fetchSuccessAndFailures',
     ]),
-    // decreaseYear: function(event, year) {
-    //   event.preventDefault();
-    //   console.log(year)
-    // },
     decreaseYear(event, year, graphNumber) {
       event.preventDefault();
-      
+
       if (year == 'Initial Time Frame') {
         year = 2010
       }else {
@@ -270,38 +291,54 @@ export default {
 
       if (graphNumber == 1) {
         this.chartOneYear = year
-      } else if (graphNumber == 2) {
+      } else if (graphNumber === 2) {
         this.chartTwoYear = year
-      } else if (graphNumber == 3) {
+        this.fetchSuccessfulByCategory({ payload });
+      } else if (graphNumber === 3) {
         this.chartThreeYear = year
         this.fetchFailuresByCategory({ payload });
+      } else if (graphNumber === 4) {
+        this.chartFourYear = year
+        this.fetchSuccessAndFailures({ payload })
       }
-
 
     }, // End decreaseYear method
-    increaseYear(evt) {
-      evt.preventDefault();
-      if (this.chartTwoYear == 'Initial Time Frame') {
-        this.chartTwoYear = 2010
+    increaseYear(event, year, graphNumber) {
+      event.preventDefault();
+
+      if (year == 'Initial Time Frame') {
+        year = 2010
       }else {
-        this.chartTwoYear += 1
+        year += 1
       }
 
-      if (this.chartTwoYear > 2017){
-        alert('There is no data past 2017')
-        this.chartTwoYear = 2017
+      if (year < 2009){
+        alert('There is no data below 2009')
+        year = 2009
       }
 
-      let startDate = moment(`01/01/${this.chartTwoYear}`).format('M/D/YYYY h:mm:ss A');
-      let endDate = moment(`12/31/${this.chartTwoYear}`).format('M/D/YYYY h:mm:ss A');
+      let startDate = moment(`01/01/${year}`).format('M/D/YYYY h:mm:ss A');
+      let endDate = moment(`12/31/${year}`).format('M/D/YYYY h:mm:ss A');
 
       const payload = {
         startDate: startDate,
         endDate: endDate,
       };
-      this.fireActionsIndividualChart({ payload });
 
-    } // End increaseYear method
+      if (graphNumber == 1) {
+        this.chartOneYear = year
+      } else if (graphNumber == 2) {
+        this.chartTwoYear = year
+        this.fetchSuccessfulByCategory({ payload });
+      } else if (graphNumber == 3) {
+        this.chartThreeYear = year
+        this.fetchFailuresByCategory({ payload });
+      }else if (graphNumber === 4) {
+        this.chartFourYear = year
+        this.fetchSuccessAndFailures({ payload })
+      }
+
+    }, // End increaseYear method
   } // End methods
 }
 </script>
