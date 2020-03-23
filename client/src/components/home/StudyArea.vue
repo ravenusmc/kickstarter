@@ -175,6 +175,55 @@
     </div>
     <!-- End of fourth Chart Area -->
 
+    <!-- Fifth chart Area -->
+    <div class='graphExplanationArea'>
+
+      <GraphCard
+       :typeOne='typeThree'
+       :data='successAndFailures'
+       :options='chartOptionsFour'>
+      </GraphCard>
+
+     <div class='paragraphDiv'>
+       <h2 class='center title'>Brief Explanation</h2>
+       <p class='paragraphFormatting'>
+         This chart is a little bit different. It should have actually been moved
+         to the front of the cards on this page - or at least near the top. The
+         purpose of this card is to show the number of failed, successful and cancelled
+         campaigns / category added together. This will give the user a much better
+         sense of the most popular campaigns on kick starter.
+       </p>
+       <p class='paragraphFormatting'>
+         The buttons below will allow the user to change the time frame year by year.
+         When the first button is hit, the time frame will move forward by one year. Thus,
+         the first year represented, after the year is increased is 2010. The <span>
+         initial time frame</span> that the site uses is from <span>May 3rd, 2009
+         to February 17th, 2017</span>.
+       </p>
+
+       <h3 class='center font'>Year: {{ chartFourYear }}</h3>
+
+         <div class='button_div'>
+
+           <form v-on:click="decreaseYear($event, chartFourYear, 3)">
+             <button class='arrowButton'>
+               <i class="fa fa-arrow-left fa-3x" aria-hidden="true" v-model="chartFourYear"></i>
+             </button>
+           </form>
+
+           <form v-on:click="increaseYear($event, chartFourYear, 4)">
+             <button class='arrowButton'>
+               <i class="fa fa-arrow-right fa-3x" aria-hidden="true" v-model="chartFourYear"></i>
+             </button>
+           </form>
+
+         </div>
+
+     </div>
+
+    </div>
+    <!-- End of fifth Chart Area -->
+
   </div>
 </template>
 
