@@ -103,6 +103,35 @@ class Data():
             success_and_failures_data.append(rows)
         return success_and_failures_data
 
+    def All_States_By_Category(self, post_data):
+        All_States_By_Category_data = []
+        columns = ['Category', 'Count']
+        All_States_By_Category_data.append(columns)
+        # Getting dates and sorting data by them.
+        first_time_stamp = pd.to_datetime(post_data['startDate'])
+        last_time_stamp = pd.to_datetime(post_data['endDate'])
+        # Sorting the data by the time frame that the user entered.
+        data = self.data.loc[(self.data['deadline'] >= first_time_stamp) & (self.data['deadline'] <= last_time_stamp), :]
+        categories = ['Publishing', 'Film & Video', 'Music', 'Food', 'Design', 'Crafts', 'Games',
+        'Comics', 'Fashion', 'Theater', 'Art', 'Photography', 'Technology', 'Dance', 'Journalism']
+        for category in categories:
+            #resetting the data set for each loop
+            new_data_set = data
+            category_data_set = new_data_set[(new_data_set.category == category)]
+            states = ['failed', 'successful', 'canceled']
+            counter = 0
+            total = 0
+            for state in states:
+                rows = []
+                #resetting the data set for each loop
+                state_data_set = category_data_set
+                dataset_length = len(category_data_set[(category_data_set.state == state)])
+                total = dataset_length + total
+            rows.append(category)
+            rows.append(total)
+            All_States_By_Category_data.append(rows)
+        return All_States_By_Category_data
+
     # def Success_And_Failures_chart(self, post_data):
     #     success_and_failures_data = []
     #     columns = ['Category', 'State', 'Count']

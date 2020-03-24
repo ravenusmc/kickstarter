@@ -179,9 +179,9 @@
     <div class='graphExplanationArea'>
 
       <GraphCard
-       :typeOne='typeThree'
-       :data='successAndFailures'
-       :options='chartOptionsFour'>
+       :typeOne='typeOne'
+       :data='allStatesByCategory'
+       :options='chartOptionsFive'>
       </GraphCard>
 
      <div class='paragraphDiv'>
@@ -201,17 +201,17 @@
          to February 17th, 2017</span>.
        </p>
 
-       <h3 class='center font'>Year: {{ chartFourYear }}</h3>
+       <h3 class='center font'>Year: {{ chartFiveYear }}</h3>
 
          <div class='button_div'>
 
-           <form v-on:click="decreaseYear($event, chartFourYear, 3)">
+           <form v-on:click="decreaseYear($event, chartFiveYear, 5)">
              <button class='arrowButton'>
                <i class="fa fa-arrow-left fa-3x" aria-hidden="true" v-model="chartFourYear"></i>
              </button>
            </form>
 
-           <form v-on:click="increaseYear($event, chartFourYear, 4)">
+           <form v-on:click="increaseYear($event, chartFiveYear, 5)">
              <button class='arrowButton'>
                <i class="fa fa-arrow-right fa-3x" aria-hidden="true" v-model="chartFourYear"></i>
              </button>
@@ -249,6 +249,7 @@ export default {
       chartTwoYear: 'Initial Time Frame',
       chartThreeYear: 'Initial Time Frame',
       chartFourYear: 'Initial Time Frame',
+      chartFiveYear: 'Initial Time Frame',
       chartOptionsOne: {
         title: 'First Chart',
         legend: { position: 'top' },
@@ -299,6 +300,21 @@ export default {
           easing: 'linear',
         },
       }, // End chartOptionsFour
+      chartOptionsFive: {
+        title: 'All States',
+        legend: { position: 'top' },
+        colors:['#05ce78'],
+        height: 500,
+        animation:{
+          duration: 1000,
+          easing: 'linear',
+        },
+        vAxis: {
+          viewWindow: {
+            min: 0,
+          },
+        },
+      },
     }
   },
   computed: {
@@ -307,6 +323,7 @@ export default {
       'successfulByCategory',
       'failuresByCategory',
       'successAndFailures',
+      'allStatesByCategory',
     ]),
   }, // End Computed properties
   methods: {
@@ -315,6 +332,7 @@ export default {
       'fetchSuccessfulByCategory',
       'fetchFailuresByCategory',
       'fetchSuccessAndFailures',
+      'fetchAllStatesByCategory',
     ]),
     decreaseYear(event, year, graphNumber) {
       event.preventDefault();
@@ -349,6 +367,9 @@ export default {
       } else if (graphNumber === 4) {
         this.chartFourYear = year
         this.fetchSuccessAndFailures({ payload })
+      } else if (graphNumber === 5) {
+        this.chartFiveYear = year
+        this.fetchAllStatesByCategory({ payload })
       }
 
     }, // End decreaseYear method

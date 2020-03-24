@@ -55,6 +55,24 @@ export default new Vuex.Store({
       ["successful", 116325],
       ["canceled", 33221]
     ],
+    allStatesByCategory: [
+      ["Category", "Count"],
+      ["Music", 11844],
+      ["Food", 10593],
+      ["Film & Video", 8435],
+      ["Fashion", 7949],
+      ["Art", 6989],
+      ["Theater", 6843],
+      ["Technology", 5815],
+      ["Photography", 5534],
+      ["Publishing", 4670],
+      ["Comics", 4663],
+      ["Crafts", 3927],
+      ["Design", 3483],
+      ["Games", 2703],
+      ["Dance", 2231],
+      ["Journalism", 1613]
+    ]
   }, // End state
 
   getters: {
@@ -62,6 +80,7 @@ export default new Vuex.Store({
     successfulByCategory: state => state.successfulByCategory,
     failuresByCategory: state => state.failuresByCategory,
     successAndFailures: state => state.successAndFailures,
+    allStatesByCategory: state => state.allStatesByCategory,
   }, // End Getters
 
   actions: {
@@ -72,13 +91,7 @@ export default new Vuex.Store({
       dispatch('fetchSuccessfulByCategory', { payload });
       dispatch('fetchFailuresByCategory', { payload });
       dispatch('fetchSuccessAndFailures', { payload });
-    },
-
-    // This action is fired when the buttons are pushed to change the year on
-    // an individual chart.
-    fireActionsIndividualChart: ({ dispatch }, { payload }) => {
-      console.log(payload)
-      dispatch('fetchSuccessfulByCategory', { payload });
+      dispatch('fetchAllStatesByCategory', { payload});
     },
 
     fetchFirstChartData: ({ commit }, { payload}) => {
@@ -117,6 +130,16 @@ export default new Vuex.Store({
       });
     },
 
+    fetchAllStatesByCategory: ({ commit }, { payload}) => {
+      const path = 'http://localhost:5000/AllStatesByCategory';
+      axios.post(path, payload)
+      .then((res) => {
+        res.data.sort((a, b) => b[1] - a[1]);
+        console.log(res.data)
+        commit('setAllStatesByCategory', res.data);
+      });
+    },
+
   }, // End Actions
 
   mutations: {
@@ -136,6 +159,10 @@ export default new Vuex.Store({
     setSuccessAndFailures(state, data) {
       state.successAndFailures = data;
     },
+
+    setAllStatesByCategory(state, data) {
+      state.AllStatesByCategory = data;
+    }
 
 
   }, // End mutations
