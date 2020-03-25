@@ -110,6 +110,8 @@ class Data():
         # Getting dates and sorting data by them.
         first_time_stamp = pd.to_datetime(post_data['startDate'])
         last_time_stamp = pd.to_datetime(post_data['endDate'])
+        print(first_time_stamp)
+        print(last_time_stamp)
         # Sorting the data by the time frame that the user entered.
         data = self.data.loc[(self.data['deadline'] >= first_time_stamp) & (self.data['deadline'] <= last_time_stamp), :]
         categories = ['Publishing', 'Film & Video', 'Music', 'Food', 'Design', 'Crafts', 'Games',
@@ -125,11 +127,12 @@ class Data():
                 rows = []
                 #resetting the data set for each loop
                 state_data_set = category_data_set
-                dataset_length = len(category_data_set[(category_data_set.state == state)])
+                dataset_length = len(state_data_set[(state_data_set.state == state)])
                 total = dataset_length + total
             rows.append(category)
             rows.append(total)
             All_States_By_Category_data.append(rows)
+        print(All_States_By_Category_data)
         return All_States_By_Category_data
 
     # def Success_And_Failures_chart(self, post_data):

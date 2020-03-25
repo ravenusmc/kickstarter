@@ -161,7 +161,7 @@ export default new Vuex.Store({
     },
 
     setAllStatesByCategory(state, data) {
-      state.AllStatesByCategory = data;
+      state.allStatesByCategory = data;
     }
 
 

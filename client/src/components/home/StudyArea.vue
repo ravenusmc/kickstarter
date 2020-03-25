@@ -207,13 +207,13 @@
 
            <form v-on:click="decreaseYear($event, chartFiveYear, 5)">
              <button class='arrowButton'>
-               <i class="fa fa-arrow-left fa-3x" aria-hidden="true" v-model="chartFourYear"></i>
+               <i class="fa fa-arrow-left fa-3x" aria-hidden="true" v-model="chartFiveYear"></i>
              </button>
            </form>
 
            <form v-on:click="increaseYear($event, chartFiveYear, 5)">
              <button class='arrowButton'>
-               <i class="fa fa-arrow-right fa-3x" aria-hidden="true" v-model="chartFourYear"></i>
+               <i class="fa fa-arrow-right fa-3x" aria-hidden="true" v-model="chartFiveYear"></i>
              </button>
            </form>
 
@@ -366,10 +366,10 @@ export default {
         this.fetchFailuresByCategory({ payload });
       } else if (graphNumber === 4) {
         this.chartFourYear = year
-        this.fetchSuccessAndFailures({ payload })
+        this.fetchSuccessAndFailures({ payload });
       } else if (graphNumber === 5) {
         this.chartFiveYear = year
-        this.fetchAllStatesByCategory({ payload })
+        this.fetchAllStatesByCategory({ payload });
       }
 
     }, // End decreaseYear method
@@ -406,6 +406,9 @@ export default {
       }else if (graphNumber === 4) {
         this.chartFourYear = year
         this.fetchSuccessAndFailures({ payload })
+      }else if (graphNumber === 5) {
+        this.chartFiveYear = year
+        this.fetchAllStatesByCategory({ payload });
       }
 
     }, // End increaseYear method
