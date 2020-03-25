@@ -303,8 +303,8 @@ export default {
       chartOptionsFive: {
         title: 'All States',
         legend: { position: 'top' },
-        colors:['#05ce78'],
         height: 500,
+        isStacked: true,
         animation:{
           duration: 1000,
           easing: 'linear',

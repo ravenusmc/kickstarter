@@ -56,22 +56,22 @@ export default new Vuex.Store({
       ["canceled", 33221]
     ],
     allStatesByCategory: [
-      ["Category", "Count"],
-      ["Music", 11844],
-      ["Food", 10593],
-      ["Film & Video", 8435],
-      ["Fashion", 7949],
-      ["Art", 6989],
-      ["Theater", 6843],
-      ["Technology", 5815],
-      ["Photography", 5534],
-      ["Publishing", 4670],
-      ["Comics", 4663],
-      ["Crafts", 3927],
-      ["Design", 3483],
-      ["Games", 2703],
-      ["Dance", 2231],
-      ["Journalism", 1613]
+      ["Category", "successful", "failed", "canceled"],
+      ["Music", 5715, 5502, 627],
+      ["Theater", 4286, 2215, 342],
+      ["Food", 3133, 6555, 905],
+      ["Art", 2870, 3544, 575],
+      ["Film & Video", 2831, 5127, 477],
+      ["Comics", 2302, 1988, 373],
+      ["Fashion", 2086, 4996, 867],
+      ["Photography", 1812, 3260, 462],
+      ["Dance", 1502, 640, 89],
+      ["Publishing", 1375, 2941, 354],
+      ["Design", 1157, 1861, 465],
+      ["Technology", 1113, 3832, 870],
+      ["Crafts", 956, 2594, 377],
+      ["Games", 643, 1606, 454],
+      ["Journalism", 446, 1000, 167],
     ]
   }, // End state
 
