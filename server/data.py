@@ -132,8 +132,26 @@ class Data():
 
     def Supporters_Scatter_Plot(self, post_data):
         supporters_scatter_plot_data = []
-        
-
+        columns = ['Number of Supporters', 'Successful Projects']
+        supporters_scatter_plot_data.append(columns)
+        # Getting dates and sorting data by them.
+        first_time_stamp = pd.to_datetime(post_data['startDate'])
+        last_time_stamp = pd.to_datetime(post_data['endDate'])
+        # Sorting the data by the time frame that the user entered.
+        data_sorted_by_time = self.data.loc[(self.data['deadline'] >= first_time_stamp) & (self.data['deadline'] <= last_time_stamp), :]
+        data = data_sorted_by_time[(data_sorted_by_time.state == 'successful')]
+        project_names = data['name'].unique()
+        for name in project_names:
+            #resetting the data set for each loop
+            project_name_data_set = data
+            rows = []
+            category_data_set = project_name_data_set[(project_name_data_set.name == name)]
+            supporters = category_data_set['pledged']
+            supporters_count = supporters.iloc[0]
+            rows.append(name)
+            rows.append(supporters_count)
+            supporters_scatter_plot_data.append(rows)
+        return supporters_scatter_plot_data
 
 
 

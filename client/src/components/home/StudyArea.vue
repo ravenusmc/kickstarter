@@ -228,9 +228,9 @@
     <div class='graphExplanationArea'>
 
       <GraphCard
-       :typeOne='typeOne'
-       :data='allStatesByCategory'
-       :options='chartOptionsFive'>
+       :typeOne='typeFive'
+       :data='supportersScatterPlot'
+       :options='chartOptionsSix'>
       </GraphCard>
 
      <div class='paragraphDiv'>
@@ -295,6 +295,7 @@ export default {
       typeTwo: 'ColumnChart',
       typeThree: 'PieChart',
       typeFour: 'TreeMap',
+      typeFive: 'Histogram',
       chartTwoYear: 'Initial Time Frame',
       chartThreeYear: 'Initial Time Frame',
       chartFourYear: 'Initial Time Frame',
@@ -365,6 +366,20 @@ export default {
           },
         },
       },
+      chartOptionsSix: {
+        title: 'Number of Backers',
+        legend: { position: 'top' },
+        height: 500,
+        animation:{
+          duration: 1000,
+          easing: 'linear',
+        },
+        vAxis: {
+          viewWindow: {
+            min: 0,
+          },
+        },
+      },
     }
   },
   computed: {
@@ -374,6 +389,7 @@ export default {
       'failuresByCategory',
       'successAndFailures',
       'allStatesByCategory',
+      'supportersScatterPlot',
     ]),
   }, // End Computed properties
   methods: {
@@ -383,6 +399,7 @@ export default {
       'fetchFailuresByCategory',
       'fetchSuccessAndFailures',
       'fetchAllStatesByCategory',
+      'fetchSupportersScatterPlot'
     ]),
     decreaseYear(event, year, graphNumber) {
       event.preventDefault();
@@ -422,6 +439,7 @@ export default {
         this.fetchAllStatesByCategory({ payload });
       } else if (graphNumber === 6) {
         this.chartSixYear = year
+        this.fetchSupportersScatterPlot({ payload });
       }
 
     }, // End decreaseYear method
@@ -463,6 +481,7 @@ export default {
         this.fetchAllStatesByCategory({ payload });
       }else if (graphNumber === 6) {
         this.chartSixYear = year
+        this.fetchSupportersScatterPlot({ payload });
       }
 
     }, // End increaseYear method

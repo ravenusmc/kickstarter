@@ -147,6 +147,7 @@ export default new Vuex.Store({
       axios.post(path, payload)
       .then((res) => {
         // res.data.sort((a, b) => b[1] - a[1]);
+        // console.log(res.data)
         commit('setSupportersScatterPlot', res.data);
       });
     },
