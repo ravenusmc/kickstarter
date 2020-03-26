@@ -72,7 +72,8 @@ export default new Vuex.Store({
       ["Crafts", 956, 2594, 377],
       ["Games", 643, 1606, 454],
       ["Journalism", 446, 1000, 167],
-    ]
+    ],
+    supportersScatterPlot: [],
   }, // End state
 
   getters: {
@@ -81,6 +82,7 @@ export default new Vuex.Store({
     failuresByCategory: state => state.failuresByCategory,
     successAndFailures: state => state.successAndFailures,
     allStatesByCategory: state => state.allStatesByCategory,
+    supportersScatterPlot: state => state.supportersScatterPlot,
   }, // End Getters
 
   actions: {
@@ -92,6 +94,7 @@ export default new Vuex.Store({
       dispatch('fetchFailuresByCategory', { payload });
       dispatch('fetchSuccessAndFailures', { payload });
       dispatch('fetchAllStatesByCategory', { payload});
+      dispatch('fetchSupportersScatterPlot', { payload });
     },
 
     fetchFirstChartData: ({ commit }, { payload}) => {
@@ -135,8 +138,16 @@ export default new Vuex.Store({
       axios.post(path, payload)
       .then((res) => {
         res.data.sort((a, b) => b[1] - a[1]);
-        console.log(res.data)
         commit('setAllStatesByCategory', res.data);
+      });
+    },
+
+    fetchSupportersScatterPlot: ({ commit }, { payload }) => {
+      const path = 'http://localhost:5000/SupportersScatterPlot';
+      axios.post(path, payload)
+      .then((res) => {
+        // res.data.sort((a, b) => b[1] - a[1]);
+        commit('setSupportersScatterPlot', res.data);
       });
     },
 
@@ -162,6 +173,10 @@ export default new Vuex.Store({
 
     setAllStatesByCategory(state, data) {
       state.allStatesByCategory = data;
+    },
+
+    setSupportersScatterPlot(state, data) {
+      state.supportersScatterPlot = data;
     }
 
 

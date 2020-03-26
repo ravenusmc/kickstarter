@@ -68,6 +68,15 @@ def All_States_By_Category():
         All_States_By_Category_data = data.All_States_By_Category(post_data)
         return jsonify(All_States_By_Category_data)
 
+#This route will get the data for all number of supports scatter plot.
+@app.route('/SupportersScatterPlot', methods=['GET', 'POST'])
+def Supporters_Scatter_Plot():
+    if request.method == 'POST':
+        data = Data()
+        post_data = request.get_json()
+        supporters_scatter_plot_data = data.Supporters_Scatter_Plot(post_data)
+        return jsonify(supporters_scatter_plot_data)
+
 
 if __name__ == '__main__':
     app.run()

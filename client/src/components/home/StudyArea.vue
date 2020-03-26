@@ -224,6 +224,55 @@
     </div>
     <!-- End of fifth Chart Area -->
 
+    <!-- sixth chart Area -->
+    <div class='graphExplanationArea'>
+
+      <GraphCard
+       :typeOne='typeOne'
+       :data='allStatesByCategory'
+       :options='chartOptionsFive'>
+      </GraphCard>
+
+     <div class='paragraphDiv'>
+       <h2 class='center title'>Brief Explanation</h2>
+       <p class='paragraphFormatting'>
+         This chart is a scatterplot that's showing if there is any relationship
+         between the number of supports and if a project is successful. The logic
+         could be that the more supports a project has the more chance that it will
+         be successful. This chart will allow the user to see if that statement
+         is true.
+       </p>
+       <p class='paragraphFormatting'>
+         The buttons below will allow the user to change the time frame year by year.
+         When the first button is hit, the time frame will move forward by one year. Thus,
+         the first year represented, after the year is increased is 2010. The <span>
+         initial time frame</span> that the site uses is from <span>May 3rd, 2009
+         to February 17th, 2017</span>.
+       </p>
+
+       <h3 class='center font'>Year: {{ chartSixYear }}</h3>
+
+         <div class='button_div'>
+
+           <form v-on:click="decreaseYear($event, chartSixYear, 6)">
+             <button class='arrowButton'>
+               <i class="fa fa-arrow-left fa-3x" aria-hidden="true" v-model="chartFiveYear"></i>
+             </button>
+           </form>
+
+           <form v-on:click="increaseYear($event, chartSixYear, 6)">
+             <button class='arrowButton'>
+               <i class="fa fa-arrow-right fa-3x" aria-hidden="true" v-model="chartFiveYear"></i>
+             </button>
+           </form>
+
+         </div>
+
+     </div>
+
+    </div>
+    <!-- End of sixth Chart Area -->
+
   </div>
 </template>
 
@@ -250,6 +299,7 @@ export default {
       chartThreeYear: 'Initial Time Frame',
       chartFourYear: 'Initial Time Frame',
       chartFiveYear: 'Initial Time Frame',
+      chartSixYear: 'Initial Time Frame',
       chartOptionsOne: {
         title: 'First Chart',
         legend: { position: 'top' },
@@ -370,6 +420,8 @@ export default {
       } else if (graphNumber === 5) {
         this.chartFiveYear = year
         this.fetchAllStatesByCategory({ payload });
+      } else if (graphNumber === 6) {
+        this.chartSixYear = year
       }
 
     }, // End decreaseYear method
@@ -409,6 +461,8 @@ export default {
       }else if (graphNumber === 5) {
         this.chartFiveYear = year
         this.fetchAllStatesByCategory({ payload });
+      }else if (graphNumber === 6) {
+        this.chartSixYear = year
       }
 
     }, // End increaseYear method
