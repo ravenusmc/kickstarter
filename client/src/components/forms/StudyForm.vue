@@ -48,7 +48,7 @@
       </form>
 
       <div class='formParagraphArea'>
-        <p class='font'>
+        <p class='font paragraphFont'>
           This form will allow the user to select different parameters to see
           how the data will change on the cards below. I will admit that only the
           first chart do all the parameters work. I never set them up for the other
@@ -123,8 +123,6 @@ form {
   display: flex;
   flex-direction: column;
   padding-bottom: 25px;
-  /* justify-content: center;
-  align-items: center; */
   text-align: left;
 }
 
@@ -151,7 +149,6 @@ form {
   margin-left: 5%;
   margin-right: 5%;
   font-size: 20px;
-  /* background-color: #05ce78; */
   line-height: 25px;
 }
 
@@ -168,6 +165,11 @@ form {
   #formArea {
     display: grid;
     grid-template-columns: 1fr;
+  }
+
+  form {
+    margin-left: 3%;
+    margin-right: 3%;
   }
 
 }

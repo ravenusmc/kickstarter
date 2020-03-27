@@ -86,6 +86,13 @@ nav {
   margin-right: 15px;
 }
 
+.linkFix:hover {
+  color: #ce055b;
+}
+
+
+
+
 .nav-area li {
   display: inline-block;
   list-style: none;
@@ -122,6 +129,40 @@ nav:after {
   top: 100%;
   right: 0;
 }
+
+@media only all and (max-width: 900px){
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: calc(95%);
+    margin: 10px 0;
+    background: #05ce78;
+    z-index: 1;
+    text-align: right;
+    padding-right: 2%;
+    height: 125px;
+  }
+
+  .logo {
+    width: 50%;
+    float: left;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 35px;
+    text-align: center;
+    padding-left: 2%;
+  }
+
+  .linkFix:hover {
+    color: #ce055b;
+  }
+
+
+}
+
 </style>
 
 

@@ -13,19 +13,19 @@
 
      <div class='paragraphDiv'>
        <h2 class='center title'>Brief Explanation</h2>
-       <p class='paragraphFormatting'>
+       <p class='paragraphFormatting paragraphFont'>
          The purpose of the first chart is to show the user the number of charts
          that have failed, succeeded or been cancelled in a given time frame. The
          user can also select a money goal that they want to go up to as well as
          the number of backers who want to support a project.
        </p>
-       <p class='paragraphFormatting'>
+       <p class='paragraphFormatting paragraphFont'>
          The reason why I created this chart is that I wanted the users to get
          just a basic information from the kickstarter data that I have. I also
          want to say that some of the filters from above will not be used to build
          this first chart.
        </p>
-       <p class='paragraphFormatting'>
+       <p class='paragraphFormatting paragraphFont'>
          This first chart has the money goal set to 1000 and the number of
          backers set to 100.
        </p>
@@ -45,14 +45,14 @@
 
      <div class='paragraphDiv'>
        <h2 class='center title'>Brief Explanation</h2>
-       <p class='paragraphFormatting'>
+       <p class='paragraphFormatting paragraphFont'>
          This chart will show the user what categories had the most successes in
          a given time frame. The <span>initial time frame</span> that the site uses
          is from <span>May 3rd, 2009 to February 17th, 2017</span>. As we can see,
          the top three kick starter campaigns in that time period were Music,
          Theater and Food.
        </p>
-       <p class='paragraphFormatting'>
+       <p class='paragraphFormatting paragraphFont'>
          The buttons below will allow the user to change the time frame year by year.
          When the first button is hit, the time frame will move forward by one year. Thus,
          the first year represented, after the year is increased is 2010.
@@ -92,14 +92,14 @@
 
      <div class='paragraphDiv'>
        <h2 class='center title'>Brief Explanation</h2>
-       <p class='paragraphFormatting'>
+       <p class='paragraphFormatting paragraphFont'>
          This chart will show the user what categories had the most failures in
          a given time frame. The <span>initial time frame</span> that the site uses
          is from <span>May 3rd, 2009 to February 17th, 2017</span>. As we can see,
          the top three kick starter campaigns in that time period were Music,
          Food and Film and Video.
        </p>
-       <p class='paragraphFormatting'>
+       <p class='paragraphFormatting paragraphFont'>
          The buttons below will allow the user to change the time frame year by year.
          When the first button is hit, the time frame will move forward by one year. Thus,
          the first year represented, after the year is increased is 2010.
@@ -139,13 +139,13 @@
 
      <div class='paragraphDiv'>
        <h2 class='center title'>Brief Explanation</h2>
-       <p class='paragraphFormatting'>
+       <p class='paragraphFormatting paragraphFont'>
          The purpose of the first chart is to show the user the number of charts
          that have failed, succeeded or been cancelled in a given time frame. The
          user can also select a money goal that they want to go up to as well as
          the number of backers who want to support a project.
        </p>
-       <p class='paragraphFormatting'>
+       <p class='paragraphFormatting paragraphFont'>
          The reason why I created this chart is that I wanted the users to get
          just a basic information from the kickstarter data that I have. I also
          want to say that some of the filters from above will not be used to build
@@ -186,14 +186,14 @@
 
      <div class='paragraphDiv'>
        <h2 class='center title'>Brief Explanation</h2>
-       <p class='paragraphFormatting'>
+       <p class='paragraphFormatting paragraphFont'>
          This chart is a little bit different. It should have actually been moved
          to the front of the cards on this page - or at least near the top. The
          purpose of this card is to show the number of failed, successful and cancelled
          campaigns / category added together. This will give the user a much better
          sense of the most popular campaigns on kick starter.
        </p>
-       <p class='paragraphFormatting'>
+       <p class='paragraphFormatting paragraphFont'>
          The buttons below will allow the user to change the time frame year by year.
          When the first button is hit, the time frame will move forward by one year. Thus,
          the first year represented, after the year is increased is 2010. The <span>
@@ -527,6 +527,14 @@ span {
 .arrowButton {
   margin-left: 5px;
   margin-right: 5px;
+}
+
+@media only all and (max-width: 900px) {
+
+  .graphExplanationArea {
+    grid-template-columns: 1fr;
+  }
+
 }
 
 </style>
