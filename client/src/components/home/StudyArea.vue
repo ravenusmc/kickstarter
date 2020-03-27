@@ -225,7 +225,7 @@
     <!-- End of fifth Chart Area -->
 
     <!-- sixth chart Area -->
-    <div class='graphExplanationArea'>
+    <!-- <div class='graphExplanationArea'>
 
       <GraphCard
        :typeOne='typeFive'
@@ -270,7 +270,7 @@
 
      </div>
 
-    </div>
+    </div> -->
     <!-- End of sixth Chart Area -->
 
   </div>
@@ -389,7 +389,7 @@ export default {
       'failuresByCategory',
       'successAndFailures',
       'allStatesByCategory',
-      'supportersScatterPlot',
+      // 'supportersScatterPlot',
     ]),
   }, // End Computed properties
   methods: {
@@ -399,7 +399,7 @@ export default {
       'fetchFailuresByCategory',
       'fetchSuccessAndFailures',
       'fetchAllStatesByCategory',
-      'fetchSupportersScatterPlot'
+      // 'fetchSupportersScatterPlot'
     ]),
     decreaseYear(event, year, graphNumber) {
       event.preventDefault();
@@ -437,10 +437,11 @@ export default {
       } else if (graphNumber === 5) {
         this.chartFiveYear = year
         this.fetchAllStatesByCategory({ payload });
-      } else if (graphNumber === 6) {
-        this.chartSixYear = year
-        this.fetchSupportersScatterPlot({ payload });
       }
+      // else if (graphNumber === 6) {
+      //   this.chartSixYear = year
+      //   this.fetchSupportersScatterPlot({ payload });
+      // }
 
     }, // End decreaseYear method
     increaseYear(event, year, graphNumber) {
@@ -479,10 +480,11 @@ export default {
       }else if (graphNumber === 5) {
         this.chartFiveYear = year
         this.fetchAllStatesByCategory({ payload });
-      }else if (graphNumber === 6) {
-        this.chartSixYear = year
-        this.fetchSupportersScatterPlot({ payload });
       }
+      // else if (graphNumber === 6) {
+      //   this.chartSixYear = year
+      //   this.fetchSupportersScatterPlot({ payload });
+      // }
 
     }, // End increaseYear method
   } // End methods
