@@ -1,50 +1,63 @@
 <template>
   <div>
 
-    <form @submit="submitForm">
+    <section id='formArea'>
 
-      <div>
-        <label>Category:</label>&nbsp;
-        <select v-model="category" name="category">
-          <option v-for="category in categories" v-bind:key="category" :value="category">
-            {{ category }}
-          </option>
-        </select>
+      <form @submit="submitForm">
+
+        <div class='datePicker'>
+          <h3 class='font'>Enter Date Range:</h3>
+          <input class='dateInput' v-model="startDate">&nbsp;&nbsp;
+          <input class='dateInput' v-model="endDate">
+        </div>
+
+        <div>
+          <label class='font'>Category:</label>&nbsp;
+          <select v-model="category" name="category">
+            <option v-for="category in categories" v-bind:key="category" :value="category">
+              {{ category }}
+            </option>
+          </select>
+        </div>
+
+        <div>
+          <label class='font'>State:</label>&nbsp;
+          <select v-model="state" name="state">
+            <option v-for="state in states" v-bind:key="state" :value="state">
+              {{ state }}
+            </option>
+          </select>
+        </div>
+
+        <div>
+          <label class='font'>Money Goal:</label>&nbsp;
+          <input v-model="moneyGoal">
+        </div>
+
+        <div>
+          <label class='font'>Number of Backers:</label>&nbsp;
+          <input v-model="backers">
+        </div>
+
+
+        <div class='selectionFix'>
+          <button class='font'>Submit</button>
+        </div>
+
+      </form>
+
+      <div class='formParagraphArea'>
+        <p class='font'>
+          This form will allow the user to select different parameters to see
+          how the data will change on the cards below. I will admit that only the
+          first chart do all the parameters work. I never set them up for the other
+          cards - mainly because I felt that I did not need to. The date is the
+          one parameter that will affect all the cards. Please also not the
+          starting date which is what all the cards are set to.
+        </p>
       </div>
 
-      <div>
-        <label>State:</label>&nbsp;
-        <select v-model="state" name="state">
-          <option v-for="state in states" v-bind:key="state" :value="state">
-            {{ state }}
-          </option>
-        </select>
-      </div>
-
-      <div class='datePicker'>
-        <h3>Enter Date:</h3>
-        <label>Start Date:</label>&nbsp;
-        <input v-model="startDate">&nbsp;&nbsp;
-        <label>End Date:</label>&nbsp;
-        <input  v-model="endDate">
-      </div>
-
-      <div>
-        <label>Money Goal:</label>&nbsp;
-        <input v-model="moneyGoal">
-      </div>
-
-      <div>
-        <label>Number of Backers:</label>&nbsp;
-        <input v-model="backers">
-      </div>
-
-
-      <div class='selectionFix'>
-        <button>Submit</button>
-      </div>
-
-    </form>
+    </section>
 
   </div>
 </template>
@@ -95,9 +108,40 @@ export default {
 
 <style scoped>
 
+#formArea {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 form {
+  margin-left: 5%;
   border: 2px solid red;
   margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.datePicker {
+  display: flex;
+  flex-direction: row;
+}
+
+.dateInput {
+  margin-top: 22px;
+  margin-left: 5px;
+  margin-right: 5px;
+  height: 15px;
+}
+
+
+.formParagraphArea {
+  margin-left: 5%;
+  margin-right: 5%;
+  font-size: 20px;
+  /* background-color: #05ce78; */
+  line-height: 25px;
 }
 
 .selectionFix {
@@ -106,6 +150,15 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+@media only all and (max-width: 900px) {
+
+  #formArea {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
 }
 
 </style>
