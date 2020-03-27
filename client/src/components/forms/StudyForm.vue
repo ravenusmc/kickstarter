@@ -11,34 +11,35 @@
           <input class='dateInput' v-model="endDate">
         </div>
 
-        <div>
-          <label class='font'>Category:</label>&nbsp;
-          <select v-model="category" name="category">
-            <option v-for="category in categories" v-bind:key="category" :value="category">
-              {{ category }}
-            </option>
-          </select>
-        </div>
+        <div class='moreParametersArea'>
+          <div>
+            <label class='font'>Category:</label>&nbsp;
+            <select v-model="category" name="category">
+              <option v-for="category in categories" v-bind:key="category" :value="category">
+                {{ category }}
+              </option>
+            </select>
+          </div>
 
-        <div>
-          <label class='font'>State:</label>&nbsp;
-          <select v-model="state" name="state">
-            <option v-for="state in states" v-bind:key="state" :value="state">
-              {{ state }}
-            </option>
-          </select>
-        </div>
+          <div>
+            <label class='font'>State:</label>&nbsp;
+            <select v-model="state" name="state">
+              <option v-for="state in states" v-bind:key="state" :value="state">
+                {{ state }}
+              </option>
+            </select>
+          </div>
 
-        <div>
-          <label class='font'>Money Goal:</label>&nbsp;
-          <input v-model="moneyGoal">
-        </div>
+          <div>
+            <label class='font'>Money Goal:</label>&nbsp;
+            <input v-model="moneyGoal">
+          </div>
 
-        <div>
-          <label class='font'>Number of Backers:</label>&nbsp;
-          <input v-model="backers">
+          <div>
+            <label class='font'>Number of Backers:</label>&nbsp;
+            <input v-model="backers">
+          </div>
         </div>
-
 
         <div class='selectionFix'>
           <button class='font'>Submit</button>
@@ -115,17 +116,22 @@ export default {
 
 form {
   margin-left: 5%;
-  border: 2px solid red;
+  border: 2px solid black;
+  box-shadow: 5px 10px #888888;
+  border-radius: 10px;
   margin-bottom: 50px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding-bottom: 25px;
+  /* justify-content: center;
+  align-items: center; */
+  text-align: left;
 }
 
 .datePicker {
   display: flex;
   flex-direction: row;
+  margin-left: 3%;
 }
 
 .dateInput {
@@ -133,6 +139,11 @@ form {
   margin-left: 5px;
   margin-right: 5px;
   height: 15px;
+}
+
+.moreParametersArea {
+  margin-left: 3%;
+  margin-top: -18px;
 }
 
 
